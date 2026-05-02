@@ -11,3 +11,168 @@ generator client {
 datasource db {
   provider = "mysql"
 }
+
+// ============================================================
+// ENUMS
+// ============================================================
+
+enum Role {
+  OWNER
+}
+
+enum ProjectStatus {
+  COMPLETED
+  IN_PROGRESS
+  ARCHIVED
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(OWNER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================
+// PROFILE
+// ============================================================
+
+model Profile {
+  id          String       @id @default(cuid())
+  name        String
+  tagline     String?
+  bio         String?      @db.Text
+  avatar      String?
+  resumeUrl   String?
+  location    String?
+  email       String?
+  openToWork  Boolean      @default(false)
+  skills      Skill[]
+  socialLinks SocialLink[]
+  updatedAt   DateTime     @updatedAt
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  name      String
+  icon      String?
+  category  String?
+  order     Int      @default(0)
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id])
+
+  @@index([profileId])
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String
+  url       String
+  icon      String?
+  order     Int      @default(0)
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id])
+
+  @@index([profileId])
+}
+
+// ============================================================
+// PROJECT
+// ============================================================
+
+model Project {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  description String        @db.Text
+  thumbnail   String?
+  githubUrl   String?
+  liveUrl     String?
+  featured    Boolean       @default(false)
+  order       Int           @default(0)
+  status      ProjectStatus @default(COMPLETED)
+  techStacks  TechStack[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([featured])
+  @@index([status])
+}
+
+model TechStack {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  icon     String?
+  projects Project[]
+}
+
+// ============================================================
+// BLOG
+// ============================================================
+
+model Blog {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String?   @db.Text
+  content     String    @db.LongText
+  thumbnail   String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  tags        BlogTag[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([published])
+  @@index([publishedAt])
+}
+
+model BlogTag {
+  id    String @id @default(cuid())
+  name  String @unique
+  blogs Blog[]
+}
+
+// ============================================================
+// VISITOR ANALYTICS
+// ============================================================
+
+model Visitor {
+  id        String   @id @default(cuid())
+  ipAddress String?
+  country   String?
+  city      String?
+  device    String?
+  browser   String?
+  os        String?
+  path      String
+  referer   String?
+  visitedAt DateTime @default(now())
+
+  @@index([path])
+  @@index([visitedAt])
+  @@index([country])
+}
+
+// ============================================================
+// CONTACT
+// ============================================================
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([isRead])
+}
