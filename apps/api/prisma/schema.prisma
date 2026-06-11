@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TechCategory {
+  FRONTEND
+  BACKEND
+  DATABASE
+  DEVOPS
+  MOBILE
+  OTHER
+}
+
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum DocType {
+  IMAGE
+  PDF
+}
+
+enum ContactStatus {
+  UNREAD
+  READ
+  REPLIED
+}
+
+// Admin
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+// Tech Stack
+model TechStack {
+  id        String       @id @default(uuid())
+  name      String
+  iconUrl   String?
+  category  TechCategory
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  projects ProjectTech[]
+}
+
+
+// Project
+model Project {
+  id           String        @id @default(uuid())
+  title        String
+  slug         String        @unique
+  description  String
+  longDesc     String?       @db.Text
+  thumbnailUrl String?
+  liveUrl      String?
+  repoUrl      String?
+  status       ProjectStatus @default(DRAFT)
+  featured     Boolean       @default(false)
+  order        Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  techStacks ProjectTech[]
+  docs       ProjectDoc[]
+}
+
+
+// ProjectTech (many-to-many pivot)
+model ProjectTech {
+  projectId   String
+  techStackId String
+
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  techStack TechStack @relation(fields: [techStackId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, techStackId])
+}
+
+// ProjectDoc (foto/PDF dokumentasi per project)
+model ProjectDoc {
+  id        String   @id @default(uuid())
+  projectId String
+  title     String?
+  url       String
+  type      DocType  @default(IMAGE)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+// Achievement
+model Achievement {
+  id             String   @id @default(uuid())
+  title          String
+  description    String?  @db.Text
+  issuer         String?
+  date           DateTime
+  certificateUrl String?
+  featured       Boolean  @default(false)
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ContactForm
+model ContactForm {
+  id        String        @id @default(uuid())
+  name      String
+  email     String
+  company   String?
+  subject   String
+  message   String        @db.Text
+  status    ContactStatus @default(UNREAD)
+  createdAt DateTime      @default(now())
+  readAt    DateTime?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
