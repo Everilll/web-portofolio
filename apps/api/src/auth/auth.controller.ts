@@ -11,6 +11,7 @@ import { CurrentUser } from '../common/decorators/current-user.decorator';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Throttle({ default: { limit: 10, ttl: 60000 } })
   @ApiOperation({ summary: 'Login untuk mendapatkan access token admin' })
   @Post('login')
   login(@Body() dto: LoginDto) {
