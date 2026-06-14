@@ -9,6 +9,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { UploadModule } from './upload/upload.module';
 import { TechStackModule } from './tech-stack/tech-stack.module';
 import { ProjectsModule } from './projects/projects.module';
+import { AchievementsModule } from './achievements/achievements.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ProjectsModule } from './projects/projects.module';
     UploadModule,
     TechStackModule,
     ProjectsModule,
+    AchievementsModule,
   ],
   controllers: [AppController],
   providers: [
