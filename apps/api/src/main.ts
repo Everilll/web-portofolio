@@ -5,6 +5,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const allowedOrigins = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : '*';
+
+  app.enableCors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Averil Dwi Yokta Mauladani Web Portofolio API')
     .setDescription('Backend API untuk web portofolio Averil Dwi Yokta Mauladani')
