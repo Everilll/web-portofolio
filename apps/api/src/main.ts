@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,17 @@ async function bootstrap() {
     origin: allowedOrigins,
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,        // strip field yang tidak ada di DTO
+      forbidNonWhitelisted: true,
+      transform: true,        // auto-convert tipe (string → number, dll)
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Averil Dwi Yokta Mauladani Web Portofolio API')
