@@ -5,7 +5,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { UploadService } from '../upload/upload.service';
 import { ProjectStatus } from '@prisma/client';
-import { CreateProjectDto, UpdateProjectDto } from './dto/project.dto';
+import { CreateProjectDto, FindProjectsQueryDto, UpdateProjectDto } from './dto/project.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -24,17 +24,8 @@ export class ProjectsService {
       .replace(/\-\-+/g, '-');
   }
 
-  async findAll(opts: {
-    featured?: boolean;
-    status?: ProjectStatus;
-    page?: number;
-    limit?: number;
-  }) {
-    const page = opts.page ?? 1;
-    const limit = opts.limit ?? 20;
-    const skip = (page - 1) * limit;
-
-    const { featured, status } = opts;
+  async findAll(opts: FindProjectsQueryDto) {
+    const { featured, page = 1, limit = 20, skip, status } = opts;
 
     const where = {
       ...(featured !== undefined ? { featured } : {}),
