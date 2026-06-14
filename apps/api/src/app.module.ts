@@ -6,6 +6,7 @@ import { AppConfigModule } from './config/config.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
         limit: 100,
       },
     ]),
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [
