@@ -10,6 +10,7 @@ import { UploadModule } from './upload/upload.module';
 import { TechStackModule } from './tech-stack/tech-stack.module';
 import { ProjectsModule } from './projects/projects.module';
 import { AchievementsModule } from './achievements/achievements.module';
+import { ContactModule } from './contact/contact.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AchievementsModule } from './achievements/achievements.module';
     TechStackModule,
     ProjectsModule,
     AchievementsModule,
+    ContactModule,
   ],
   controllers: [AppController],
   providers: [
