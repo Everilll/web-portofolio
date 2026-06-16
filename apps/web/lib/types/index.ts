@@ -120,3 +120,70 @@ export interface ContactForm {
   createdAt: string;
   readAt?: string | null;
 }
+
+// Query DTOs
+export interface FindProjectsQueryDto {
+  featured?: boolean;
+  status?: ProjectStatus;
+  page?: number;
+  limit?: number;
+}
+
+export interface FindAchievementsQueryDto {
+  featured?: boolean;
+  page?: number;
+  limit?: number;
+}
+
+export interface FindContactsQueryDto {
+  status?: ContactStatus;
+  page?: number;
+  limit?: number;
+}
+
+// Mutation DTOs
+export interface CreateProjectDto {
+  title: string;
+  description: string;
+  longDesc?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+  status?: ProjectStatus;
+  featured?: boolean;
+  order?: number;
+  techStackIds?: string[];
+}
+
+export interface UpdateProjectDto extends Partial<CreateProjectDto> {}
+
+export interface CreateTechStackDto {
+  name: string;
+  category: TechCategory;
+  order?: number;
+}
+
+export interface UpdateTechStackDto extends Partial<CreateTechStackDto> {}
+
+export interface CreateAchievementDto {
+  title: string;
+  description?: string;
+  issuer?: string;
+  date: string; // ISO format string or YYYY-MM-DD
+  featured?: boolean;
+  order?: number;
+}
+
+export interface UpdateAchievementDto extends Partial<CreateAchievementDto> {}
+
+export interface SubmitContactDto {
+  name: string;
+  email: string;
+  company?: string;
+  subject: string;
+  message: string;
+}
+
+export interface UpdateContactStatusDto {
+  status: ContactStatus;
+}
+
