@@ -36,32 +36,32 @@ Implemented verbatim as CSS custom properties in `app/globals.css`. The palette 
 
 ```css
 :root {
-  /* backgrounds — warm white base */
-  --background:        oklch(97% 0.010 80);
-  --surface:           oklch(94% 0.020 80);
-  --muted:             oklch(88% 0.030 80);
+  /* backgrounds — warm cream white base */
+  --background:        oklch(98.5% 0.008 85);
+  --surface:           oklch(96% 0.012 85);
+  --muted:             oklch(91% 0.015 85);
 
   /* foregrounds */
-  --foreground:        oklch(18% 0.050 260);
-  --foreground-muted:  oklch(40% 0.070 260);
+  --foreground:        oklch(20% 0.04 250);
+  --foreground-muted:  oklch(45% 0.04 250);
 
-  /* primary — sky blue */
-  --primary:           oklch(52% 0.180 250);
-  --primary-light:     oklch(74% 0.120 250);
-  --primary-fg:        oklch(97% 0.010 80);
+  /* primary — vibrant hot pink */
+  --primary:           oklch(60% 0.22 340);
+  --primary-light:     oklch(75% 0.15 340);
+  --primary-fg:        oklch(98.5% 0.008 85);
 
-  /* secondary — starlight gold */
-  --secondary:         oklch(66% 0.150 82);
-  --secondary-fg:      oklch(18% 0.050 260);
+  /* secondary — rich purple/indigo */
+  --secondary:         oklch(50% 0.20 290);
+  --secondary-fg:      oklch(98.5% 0.008 85);
 
-  /* accent — horizon teal */
-  --accent:            oklch(57% 0.100 210);
-  --accent-fg:         oklch(97% 0.010 80);
+  /* accent — vivid teal/turquoise */
+  --accent:            oklch(62% 0.16 200);
+  --accent-fg:         oklch(98.5% 0.008 85);
 
   /* ui */
-  --border:            oklch(70% 0.030 80);
-  --input:             oklch(88% 0.030 80);
-  --ring:              oklch(52% 0.180 250);
+  --border:            oklch(85% 0.015 85);
+  --input:             oklch(94% 0.012 85);
+  --ring:              oklch(60% 0.22 340);
 
   --radius:            0.9rem;
 }
@@ -71,53 +71,53 @@ Implemented verbatim as CSS custom properties in `app/globals.css`. The palette 
 
 | Token | Value | Role |
 |---|---|---|
-| `--background` | `oklch(97% 0.010 80)` | Warm white canvas |
-| `--surface` | `oklch(94% 0.020 80)` | Slightly toasted surface (cards) |
-| `--muted` | `oklch(88% 0.030 80)` | Muted section background |
-| `--foreground` | `oklch(18% 0.050 260)` | Near-black with a cool tint |
-| `--foreground-muted` | `oklch(40% 0.070 260)` | Secondary text |
-| `--primary` | `oklch(52% 0.180 250)` | Sky blue — primary CTA, links |
-| `--primary-light` | `oklch(74% 0.120 250)` | Hover/tint of primary |
-| `--primary-fg` | `oklch(97% 0.010 80)` | Text on primary |
-| `--secondary` | `oklch(66% 0.150 82)` | Starlight gold — highlights, tags |
-| `--secondary-fg` | `oklch(18% 0.050 260)` | Text on secondary |
-| `--accent` | `oklch(57% 0.100 210)` | Horizon teal — decorative accent |
-| `--accent-fg` | `oklch(97% 0.010 80)` | Text on accent |
-| `--border` | `oklch(70% 0.030 80)` | Subtle warm border |
-| `--input` | `oklch(88% 0.030 80)` | Input background |
-| `--ring` | `oklch(52% 0.180 250)` | Focus ring (matches primary) |
+| `--background` | `oklch(98.5% 0.008 85)` | Warm cream white canvas |
+| `--surface` | `oklch(96% 0.012 85)` | Toasted surface (cards) |
+| `--muted` | `oklch(91% 0.015 85)` | Muted section background |
+| `--foreground` | `oklch(20% 0.04 250)` | Near-black with a cool tint |
+| `--foreground-muted` | `oklch(45% 0.04 250)` | Secondary text |
+| `--primary` | `oklch(60% 0.22 340)` | Vibrant hot pink — primary CTA, links |
+| `--primary-light` | `oklch(75% 0.15 340)` | Hover/tint of primary |
+| `--primary-fg` | `oklch(98.5% 0.008 85)` | Text on primary |
+| `--secondary` | `oklch(50% 0.20 290)` | Rich purple/indigo — highlights, tags |
+| `--secondary-fg` | `oklch(98.5% 0.008 85)` | Text on secondary |
+| `--accent` | `oklch(62% 0.16 200)` | Vivid teal/turquoise — decorative accent |
+| `--accent-fg` | `oklch(98.5% 0.008 85)` | Text on accent |
+| `--border` | `oklch(85% 0.015 85)` | Subtle warm border |
+| `--input` | `oklch(94% 0.012 85)` | Input background |
+| `--ring` | `oklch(60% 0.22 340)` | Focus ring (matches primary) |
 | `--radius` | `0.9rem` | Global corner radius |
 
 ### Dark mode (`.dark`)
 
 ```css
 .dark {
-  /* backgrounds — deep night sky */
-  --background:        oklch(8%  0.020 260);
-  --surface:           oklch(12% 0.030 260);
-  --muted:             oklch(18% 0.050 260);
+  /* backgrounds — deep dark navy sky */
+  --background:        oklch(12% 0.025 245);
+  --surface:           oklch(16% 0.03 245);
+  --muted:             oklch(22% 0.04 245);
 
   /* foregrounds */
-  --foreground:        oklch(95% 0.020 250);
-  --foreground-muted:  oklch(62% 0.060 250);
+  --foreground:        oklch(95% 0.015 240);
+  --foreground-muted:  oklch(70% 0.02 240);
 
-  /* primary — brighter sky blue */
-  --primary:           oklch(68% 0.170 250);
-  --primary-light:     oklch(28% 0.120 250);
-  --primary-fg:        oklch(8%  0.020 260);
+  /* primary — brighter hot pink */
+  --primary:           oklch(68% 0.23 340);
+  --primary-light:     oklch(32% 0.15 340);
+  --primary-fg:        oklch(12% 0.025 245);
 
-  /* secondary — gold star */
-  --secondary:         oklch(78% 0.160 82);
-  --secondary-fg:      oklch(8%  0.020 260);
+  /* secondary — starlight purple/indigo */
+  --secondary:         oklch(70% 0.18 290);
+  --secondary-fg:      oklch(12% 0.025 245);
 
   /* accent — vivid teal */
-  --accent:            oklch(72% 0.120 210);
-  --accent-fg:         oklch(8%  0.020 260);
+  --accent:            oklch(75% 0.15 200);
+  --accent-fg:         oklch(12% 0.025 245);
 
   /* ui */
-  --border:            oklch(24% 0.070 260);
-  --input:             oklch(18% 0.050 260);
-  --ring:              oklch(68% 0.170 250);
+  --border:            oklch(26% 0.05 245);
+  --input:             oklch(18% 0.035 245);
+  --ring:              oklch(68% 0.23 340);
 }
 ```
 
@@ -125,23 +125,23 @@ Implemented verbatim as CSS custom properties in `app/globals.css`. The palette 
 
 | Token | Value | Role |
 |---|---|---|
-| `--background` | `oklch(8% 0.020 260)` | Deep night sky |
-| `--surface` | `oklch(12% 0.030 260)` | Card surface |
-| `--muted` | `oklch(18% 0.050 260)` | Muted section |
-| `--foreground` | `oklch(95% 0.020 250)` | Near-white starlight |
-| `--foreground-muted` | `oklch(62% 0.060 250)` | Muted text |
-| `--primary` | `oklch(68% 0.170 250)` | Brighter sky blue |
-| `--primary-light` | `oklch(28% 0.120 250)` | Dark tint of primary |
-| `--primary-fg` | `oklch(8% 0.020 260)` | Text on primary |
-| `--secondary` | `oklch(78% 0.160 82)` | Gold star |
-| `--secondary-fg` | `oklch(8% 0.020 260)` | Text on secondary |
-| `--accent` | `oklch(72% 0.120 210)` | Vivid teal |
-| `--accent-fg` | `oklch(8% 0.020 260)` | Text on accent |
-| `--border` | `oklch(24% 0.070 260)` | Muted dark border |
-| `--input` | `oklch(18% 0.050 260)` | Input background |
-| `--ring` | `oklch(68% 0.170 250)` | Focus ring |
+| `--background` | `oklch(12% 0.025 245)` | Deep dark navy sky |
+| `--surface` | `oklch(16% 0.03 245)` | Navy card surface |
+| `--muted` | `oklch(22% 0.04 245)` | Navy section background |
+| `--foreground` | `oklch(95% 0.015 240)` | Near-white starlight |
+| `--foreground-muted` | `oklch(70% 0.02 240)` | Muted text |
+| `--primary` | `oklch(68% 0.23 340)` | Brighter hot pink |
+| `--primary-light` | `oklch(32% 0.15 340)` | Dark tint of primary |
+| `--primary-fg` | `oklch(12% 0.025 245)` | Text on primary |
+| `--secondary` | `oklch(70% 0.18 290)` | Starlight purple/indigo |
+| `--secondary-fg` | `oklch(12% 0.025 245)` | Text on secondary |
+| `--accent` | `oklch(75% 0.15 200)` | Vivid teal/turquoise |
+| `--accent-fg` | `oklch(12% 0.025 245)` | Text on accent |
+| `--border` | `oklch(26% 0.05 245)` | Muted navy border |
+| `--input` | `oklch(18% 0.035 245)` | Input background |
+| `--ring` | `oklch(68% 0.23 340)` | Focus ring |
 
-> **Note on shadcn compatibility**: shadcn reads `--card`, `--popover`, `--card-foreground`, `--popover-foreground` etc. Map those to the tokens above in `globals.css` (e.g. `--card: var(--surface)`). Never use shadcn's default blue — the custom sky-blue primary above replaces it entirely.
+> **Note on shadcn compatibility**: shadcn reads `--card`, `--popover`, `--card-foreground`, `--popover-foreground` etc. Map those to the tokens above in `globals.css` (e.g. `--card: var(--surface)`). Never use shadcn's default blue — the custom hot pink primary above replaces it entirely.
 
 ---
 
