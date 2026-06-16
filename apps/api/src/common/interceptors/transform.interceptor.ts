@@ -29,10 +29,13 @@ export class TransformInterceptor<T>
         // Bypass wrapping for binary/stream responses (e.g. PDF download)
         if (data instanceof StreamableFile) return data;
 
+        // If the return object contains both data and meta, keep it intact to preserve pagination
+        const isPaginated = data && typeof data === 'object' && 'data' in data && 'meta' in data;
+
         return {
           statusCode,
           message: data?.message ?? 'Success',
-          data: data?.data !== undefined ? data.data : data,
+          data: isPaginated ? data : (data?.data !== undefined ? data.data : data),
           timestamp: new Date().toISOString(),
         };
       }),
