@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, Geist_Mono } from "next/font/google";
+import { Outfit, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/layout/theme-provider";
@@ -17,9 +17,8 @@ const inter = Inter({
   display: 'swap',
 });
 
-const fraunces = Fraunces({
+const outfit = Outfit({
   subsets: ['latin'],
-  axes: ['SOFT', 'WONK', 'opsz'],
   variable: '--font-heading',
   display: 'swap',
 });
@@ -46,7 +45,7 @@ export default function RootLayout({
       className={cn(
         "h-full antialiased scroll-smooth",
         inter.variable,
-        fraunces.variable,
+        outfit.variable,
         geistMono.variable
       )}
       suppressHydrationWarning

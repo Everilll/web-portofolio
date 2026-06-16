@@ -36,16 +36,23 @@ export function Marquee({
     {
       className: cn(
         'overflow-hidden flex w-full relative group',
-        pauseOnHover && 'hover:[&>div]:[animation-play-state:paused]',
         className
       ),
+      style: {
+        maskImage: 'linear-gradient(to right, transparent, white 15%, white 85%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, white 15%, white 85%, transparent)',
+      },
       role: 'region',
       'aria-label': 'Marquee ticker',
     },
     React.createElement(
       'div',
       {
-        className: cn('flex whitespace-nowrap min-w-max', animationClass),
+        className: cn(
+          'flex whitespace-nowrap min-w-max',
+          pauseOnHover && 'group-hover:[animation-play-state:paused]',
+          animationClass
+        ),
         style: { '--speed': `${speed}s` } as React.CSSProperties,
       },
       // First copy

@@ -28,7 +28,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         </h2>
       </div>
 
-      <div className="flex flex-col border-t border-[--border]">
+      <div className="flex flex-col">
         {projects.map((project, index) => {
           const numberStr = String(index + 1).padStart(2, '0');
           const isHovered = hoveredIndex === index;
@@ -36,7 +36,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           return (
             <div
               key={project.id}
-              className="relative border-b border-[--border] group py-8 md:py-12 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300"
+              className="relative group py-8 md:py-12 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
