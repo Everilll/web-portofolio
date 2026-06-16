@@ -25,7 +25,7 @@ export function FeaturedAchievements({ achievements }: FeaturedAchievementsProps
   };
 
   return (
-    <section className="w-full py-24 bg-[--muted]/30 border-y border-[--border]">
+    <section className="w-full py-24 bg-[--surface]/70">
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col gap-12">
         <div className="flex flex-col gap-2">
           <span className="text-xs font-bold tracking-wider text-[--secondary] uppercase">Milestones</span>

@@ -12,14 +12,26 @@ interface TechMarqueeProps {
 }
 
 export function TechMarquee({ techStacks }: TechMarqueeProps) {
-  const midPoint = Math.ceil(techStacks.length / 2);
-  const row1 = techStacks.slice(0, midPoint);
-  const row2 = techStacks.slice(midPoint);
+  const repeatToMin = <T,>(arr: T[], minCount: number): T[] => {
+    if (arr.length === 0) return [];
+    let result = [...arr];
+    while (result.length < minCount) {
+      result = [...result, ...arr];
+    }
+    return result;
+  };
 
-  const renderTechCard = (tech: TechStack) => {
+  const midPoint = Math.ceil(techStacks.length / 2);
+  const baseRow1 = techStacks.slice(0, midPoint);
+  const baseRow2 = techStacks.slice(midPoint);
+
+  const row1 = repeatToMin(baseRow1, 15);
+  const row2 = repeatToMin(baseRow2, 15);
+
+  const renderTechCard = (tech: TechStack, idx: number) => {
     return React.createElement(
       Tooltip,
-      { key: tech.id },
+      { key: `${tech.id}-${idx}` },
       React.createElement(
         TooltipTrigger,
         { asChild: true },
@@ -50,7 +62,7 @@ export function TechMarquee({ techStacks }: TechMarqueeProps) {
   };
 
   return (
-    <section className="w-full py-16 bg-[--muted]/30 border-y border-[--border] flex flex-col gap-6 overflow-hidden">
+    <section className="w-full py-16 bg-[--surface]/70 flex flex-col gap-6 overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 w-full flex flex-col gap-2 mb-4">
         <span className="text-xs font-bold tracking-wider text-[--accent] uppercase">My Toolbox</span>
         <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight text-[--foreground]">
@@ -61,13 +73,13 @@ export function TechMarquee({ techStacks }: TechMarqueeProps) {
       <TooltipProvider delayDuration={150}>
         <div className="flex flex-col gap-6 w-full">
           {row1.length > 0 && (
-            <Marquee direction="left" speed={28} className="py-2">
+            <Marquee direction="left" speed={55} className="py-2">
               {row1.map(renderTechCard)}
             </Marquee>
           )}
 
           {row2.length > 0 && (
-            <Marquee direction="right" speed={32} className="py-2">
+            <Marquee direction="right" speed={60} className="py-2">
               {row2.map(renderTechCard)}
             </Marquee>
           )}
